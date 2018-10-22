@@ -1,0 +1,15 @@
+{
+	"name": "cptechinc/dplus-ecomm",
+    "type": "library",
+    "description": "Classes for Dplus Ecomm",
+    "keywords": ["dplus-ecomm"],
+    "homepage": "http://github.com/cptechinc/dplus-ecomm",
+	"autoload": {
+		"psr-4": {
+			"Dplus\\Ecomm\\": "src/"
+		},
+		"classmap": [
+			"src/Model/"
+		]
+	}
+}
