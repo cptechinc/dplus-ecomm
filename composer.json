@@ -3,7 +3,21 @@
     "type": "library",
     "description": "Classes for Dplus Ecomm",
     "keywords": ["dplus-ecomm"],
-    "homepage": "http://github.com/cptechinc/dplus-ecomm",
+	"homepage": "http://github.com/cptechinc/dplus-ecomm",
+	"authors": [
+        {
+            "name": "Paul Gomez",
+            "email": "paul@cptechinc.com",
+            "homepage": "https://www.cptechinc.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Barbara Bullemer",
+            "email": "barbara@cptechinc.com",
+            "homepage": "https://www.cptechinc.com",
+            "role": "Developer"
+        }
+    ],
 	"autoload": {
 		"psr-4": {
 			"Dplus\\Ecomm\\": "src/"
