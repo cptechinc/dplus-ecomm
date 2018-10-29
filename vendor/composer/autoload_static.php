@@ -23,6 +23,7 @@ class ComposerStaticInitd85ba3772556b7089d92006ffdd59dc2
     public static $classMap = array (
         'Dplus\\Ecomm\\SalesOrdersDisplay' => __DIR__ . '/../..' . '/src/SalesOrdersDisplay.class.php',
         'Family' => __DIR__ . '/../..' . '/src/Model/Family.class.php',
+        'ItemGroup' => __DIR__ . '/../..' . '/src/Model/ItemGroup.class.php',
         'Product' => __DIR__ . '/../..' . '/src/Model/Product.class.php',
     );
 

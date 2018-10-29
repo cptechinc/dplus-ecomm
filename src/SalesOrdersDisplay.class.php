@@ -1,15 +1,20 @@
 <?php
 	namespace Dplus\Ecomm;
 	
+	use Purl\Url;
 	use Dplus\ProcessWire\DplusWire;
-	use Dplus\Base\StringerBell;
 	use Dplus\Dpluso\OrderDisplays\SalesOrderPanel;
+	
+	/**
+	 * Use Statements for Model Classes which are non-namespaced
+	 */
+	use Order;
 
 	class SalesOrdersDisplay extends SalesOrderPanel {
 
-        public function __construct($sessionID, \Purl\Url $pageurl, $modal, $loadinto, $ajax) {
+        public function __construct($sessionID, Url $pageurl, $modal, $loadinto, $ajax) {
 			parent::__construct($sessionID, $pageurl, $modal, $loadinto, $ajax);
-			$this->pageurl = new Purl\Url($pageurl->getUrl());
+			$this->pageurl = new Url($pageurl->getUrl());
 			$this->setup_pageurl();
 		}
 
@@ -22,7 +27,7 @@
 		}
 
 		public function generate_loaddetailsurl(Order $order) {
-			$url = new \Purl\Url(DplusWire::wire('pages')->get('/user/orders/redir/')->url);
+			$url = new Url(DplusWire::wire('pages')->get('/user/orders/redir/')->url);
 			$url->query->set('action', 'get-order-details');
 			$url->query->set('ordn', $order->ordernumber);
 			return $url->getUrl();
@@ -32,12 +37,4 @@
 		/* =============================================================
 			Class Functions
 		============================================================ */
-		public function get_order($debug = false) {
-			return get_orderhead($this->sessionID, $this->ordn, $debug);
-		}
-
-		public function generate_filter(ProcessWire\WireInput $input) {
-			$stringerbell = new StringerBell();
-			parent::generate_filter($input);
-		}
 	}

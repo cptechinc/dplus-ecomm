@@ -1,4 +1,6 @@
 <?php
+	use ProcessWire\Page;
+	
 	class Product {
 		use \Dplus\Base\ThrowErrorTrait;
 		use \Dplus\Base\MagicMethodTraits;
@@ -6,6 +8,7 @@
 		use \Dplus\Base\CreateClassArrayTraits;
 
 		protected $famID;
+		protected $itemgroup;
         protected $itemid;
 		protected $name1;
 		protected $name2;
@@ -49,7 +52,7 @@
 		/**
 		 * Imports a family record from the database and makes a page in Processwire
 		 * @param  string $parentcode Code to be parsed for parent page
-		 * @return bool               Was Family Created / Updated
+		 * @return bool               Was Product Created / Updated
 		 */
         public function import_product($parentcode = '') {
             $p = DplusWire::wire('pages')->get("template=product, itemid=$this->itemid");
@@ -65,6 +68,12 @@
 		/* =============================================================
 		    FAMILY PAGE FUNCTIONS
 		============================================================ */
+		/**
+		 * Updates Product Page Values
+		 * @param  Page   $p          ProcessWire Page to update
+		 * @param  string $parentcode Code to be parsed for parent page
+		 * @return bool               Was Product Updated
+		 */
 		public function update_page(Page $p, $parentcode = '') {
 			// $p->parent = wire('pages')->get('/about/'); // set the parent
 			$p->title = $this->name1;
@@ -73,6 +82,7 @@
 			$p->name2 = $this->name2;
 			$p->name3 = $this->name3;
             $p->name4 = $this->name4;
+			$p->itemgroup = $this->itemgroup;
 			$p->imagetext = "image of $this->name1";
             $p->unit = $this->unit;
             $p->uomdesc = $this->uomdesc;
@@ -113,9 +123,18 @@
 			}
 			return $p->save();
 		}
-
+		
+		/**
+		 * Creates Processwire/Page for Product
+		 * @param  string $parentcode Code to be parsed for parent page
+		 * @return bool               Was Page created?
+		 */
 		public function create_page($parentcode = '') {
-			$parent = DplusWire::wire('pages')->get("template=family,famID=$this->familyid");
+			if (DplusWire::wire('config')->templateparent_product == 'item-group') {
+				$parent = DplusWire::wire('pages')->get("template=item-group,itemgroup=$this->itemgroup");
+			} else {
+				$parent = DplusWire::wire('pages')->get("template=family,famID=$this->familyid");
+			}
 
 			if (get_class($parent) == 'ProcessWire\Page') {
 				$p = new Page();
@@ -129,7 +148,11 @@
 				return false;
 			}
 		}
-
+		
+		/**
+		 * Imports an array of Product then updates/creates Pages for them
+		 * @return array Keyed by Item ID and the value if Page was updated / created
+		 */
 		public static function import_products() {
 			$results = array();
 			$products = get_products();
