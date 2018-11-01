@@ -82,6 +82,7 @@
 				$p->parent = $parent;
 				$p->name = DplusWire::wire('sanitizer')->pageName($this->itemid); // give it a name used in the url for the page
 				$p->title = $this->name1;
+				$p->status(['hidden' => true, 'unpublished' => true]); 
 				$p->save();
 				return ($p->id) ? $this->update_page($p) : false;
 			} else {
@@ -97,7 +98,7 @@
 			$pages = DplusWire::wire('pages')->find('template=imitem');
             foreach ($pages as $page) {
                 $page->of(false);
-                $page->delete(true);
+                $page->status(['hidden' => true, 'unpublished' => true]); 
             }
 			
 			$results = array();

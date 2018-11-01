@@ -54,7 +54,7 @@
 		============================================================ */
 		public function update_page(Page $p, $parentcode = '') {
 			$p->title = $this->desc;
-			$p->itemgroup = $this->code;
+			$p->code = $this->code;
 			$p->name = DplusWire::wire('sanitizer')->pageName($this->code); // give it a name used in the url for the page
 			return $p->save();
 		}
@@ -68,6 +68,7 @@
 				$p->parent = $parent; // set the parent
 				$p->name = DplusWire::wire('sanitizer')->pageName($this->code); // give it a name used in the url for the page
 				$p->title = $this->desc;
+				$p->status(['hidden' => false, 'unpublished' => false]); 
 				$p->save();
 				return ($p->id) ? $this->update_page($p) : false;
 			} else {
@@ -79,12 +80,12 @@
             $pages = DplusWire::wire('pages')->find('template=item-group');
             foreach ($pages as $page) {
                 $page->of(false);
-                $page->delete(true);
+				$page->status(['hidden' => true, 'unpublished' => true]); 
             }
 			$results = array();
 			$itemgroups = get_itemgroups();
 			foreach ($itemgroups as $itemgroup) {
-				$results[$itemgroup->itemgroup] = $itemgroup->import_itemgroup();
+				$results[$itemgroup->code] = $itemgroup->import_itemgroup();
 			}
 			return $results;
 		}
