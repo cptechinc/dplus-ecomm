@@ -38,7 +38,7 @@
 		 * @return bool               Was Family Created / Updated
 		 */
         public function import_itemgroup($parentcode = '') {
-            $p = DplusWire::wire('pages')->get("template=item-group, itemgrousp=$this->itemgroup");
+            $p = DplusWire::wire('pages')->get("template=item-group, itemgroup=$this->itemgroup");
 
 			if (get_class($p) == 'ProcessWire\Page') {
 				$p->of(false);
@@ -59,13 +59,13 @@
 		}
 
 		public function create_page($parentcode = '') {
-			$parent = DplusWire::wire('pages')->get("template=category,catID=$this->catid");
+			$parent = DplusWire::wire('pages')->get("template=products");
 
 			if (get_class($parent) == 'ProcessWire\Page') {
 				$p = new Page(); // create new page object
 				$p->template = 'item-group'; // set template
 				$p->parent = $parent; // set the parent
-				$p->name = DplusWire::wire('sanitizer')->pageName($this->famID); // give it a name used in the url for the page
+				$p->name = DplusWire::wire('sanitizer')->pageName($this->itemgroup); // give it a name used in the url for the page
 				$p->title = $this->desc;
 				$p->save();
 				return ($p->id) ? $this->update_page($p) : false;
@@ -74,11 +74,16 @@
 			}
 		}
 
-		public static function import_families() {
+		public static function import_itemgroups() {
+            $pages = DplusWire::wire('pages')->find('template=item-group');
+            foreach ($pages as $page) {
+                $page->of(false);
+                $page->delete(true);
+            }
 			$results = array();
-			$families = get_itemgroups();
-			foreach ($families as $family) {
-				$results[$family->famID] = $family->import_itemgroup();
+			$itemgroups = get_itemgroups();
+			foreach ($itemgroups as $itemgroup) {
+				$results[$itemgroup->itemgroup] = $itemgroup->import_itemgroup();
 			}
 			return $results;
 		}

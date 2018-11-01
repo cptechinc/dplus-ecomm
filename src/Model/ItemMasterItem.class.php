@@ -1,5 +1,6 @@
 <?php
 	use ProcessWire\Page;
+	use Dplus\ProcessWire\DplusWire;
 	
 	class ItemMasterItem {
 		use \Dplus\Base\ThrowErrorTrait;
@@ -12,9 +13,9 @@
         protected $name1;
         protected $name2;
         protected $shortdesc;
-        protected $famID;
+        protected $familyid;
         protected $image;
-        protected $catID;
+        protected $categoryid;
         protected $tview;
         protected $itemgroup;
 		protected $dummy;
@@ -55,7 +56,7 @@
 			$p->itemgroup = $this->itemgroup;
 			
             
-			$p->name = DplusWire::wire('sanitizer')->pageName($this->name1); // give it a name used in the url for the page
+			$p->name = DplusWire::wire('sanitizer')->pageName("$this->name1 - $this->itemid"); // give it a name used in the url for the page
 
 			if (file_exists(DplusWire::wire('config')->dplusproductimagedirectory.$this->image) && !empty($this->image)) {
 				$p->product_image = DplusWire::wire('config')->dplusproductimagedirectory.$this->image;
@@ -77,7 +78,7 @@
 
 			if (get_class($parent) == 'ProcessWire\Page') {
 				$p = new Page();
-				$p->template = 'itemitem';
+				$p->template = 'imitem';
 				$p->parent = $parent;
 				$p->name = DplusWire::wire('sanitizer')->pageName($this->itemid); // give it a name used in the url for the page
 				$p->title = $this->name1;
@@ -93,6 +94,12 @@
 		 * @return array Keyed by Item ID and the value if Page was updated / created
 		 */
 		public static function import_items() {
+			$pages = DplusWire::wire('pages')->find('template=imitem');
+            foreach ($pages as $page) {
+                $page->of(false);
+                $page->delete(true);
+            }
+			
 			$results = array();
 			$products = get_items();
 			foreach ($products as $product) {
