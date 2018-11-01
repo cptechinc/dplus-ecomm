@@ -12,7 +12,7 @@
          * Item Group Code
          * @var string
          */
-        protected $itemgroup;
+        protected $code;
         
         /**
          * Item Group Description
@@ -38,7 +38,8 @@
 		 * @return bool               Was Family Created / Updated
 		 */
         public function import_itemgroup($parentcode = '') {
-            $p = DplusWire::wire('pages')->get("template=item-group, itemgroup=$this->itemgroup");
+			$p = DplusWire::wire('pages')->get("template=item-group, itemgroup=$this->code");
+			
 
 			if (get_class($p) == 'ProcessWire\Page') {
 				$p->of(false);
@@ -53,8 +54,8 @@
 		============================================================ */
 		public function update_page(Page $p, $parentcode = '') {
 			$p->title = $this->desc;
-			$p->itemgroup = $this->itemgroup;
-			$p->name = DplusWire::wire('sanitizer')->pageName($this->itemgroup); // give it a name used in the url for the page
+			$p->itemgroup = $this->code;
+			$p->name = DplusWire::wire('sanitizer')->pageName($this->code); // give it a name used in the url for the page
 			return $p->save();
 		}
 
@@ -65,7 +66,7 @@
 				$p = new Page(); // create new page object
 				$p->template = 'item-group'; // set template
 				$p->parent = $parent; // set the parent
-				$p->name = DplusWire::wire('sanitizer')->pageName($this->itemgroup); // give it a name used in the url for the page
+				$p->name = DplusWire::wire('sanitizer')->pageName($this->code); // give it a name used in the url for the page
 				$p->title = $this->desc;
 				$p->save();
 				return ($p->id) ? $this->update_page($p) : false;
