@@ -20,7 +20,8 @@
     ],
 	"autoload": {
 		"psr-4": {
-			"Dplus\\Ecomm\\": "src/"
+            "Dplus\\Ecomm\\": "src/",
+            "Dplus\\Ecomm\\Pages\\": "src/Pages/"
 		},
 		"classmap": [
 			"src/Model/"

@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Dplus\\Ecomm\\Pages\\' => array($baseDir . '/src/Pages'),
     'Dplus\\Ecomm\\' => array($baseDir . '/src'),
 );

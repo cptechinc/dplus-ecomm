@@ -9,11 +9,16 @@ class ComposerStaticInitd85ba3772556b7089d92006ffdd59dc2
     public static $prefixLengthsPsr4 = array (
         'D' => 
         array (
+            'Dplus\\Ecomm\\Pages\\' => 18,
             'Dplus\\Ecomm\\' => 12,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Dplus\\Ecomm\\Pages\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Pages',
+        ),
         'Dplus\\Ecomm\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
@@ -21,11 +26,14 @@ class ComposerStaticInitd85ba3772556b7089d92006ffdd59dc2
     );
 
     public static $classMap = array (
+        'Dplus\\Ecomm\\Pages\\FamilyPages' => __DIR__ . '/../..' . '/src/Pages/Family.class.php',
+        'Dplus\\Ecomm\\Pages\\ItemGroupPages' => __DIR__ . '/../..' . '/src/Pages/ItemGroup.class.php',
+        'Dplus\\Ecomm\\Pages\\ItemMasterItemPages' => __DIR__ . '/../..' . '/src/Pages/ItemMasterItem.class.php',
+        'Dplus\\Ecomm\\Pages\\ProcessWirePageBuilder' => __DIR__ . '/../..' . '/src/Pages/PWPageBuilder.abstract.php',
         'Dplus\\Ecomm\\SalesOrdersDisplay' => __DIR__ . '/../..' . '/src/SalesOrdersDisplay.class.php',
         'Family' => __DIR__ . '/../..' . '/src/Model/Family.class.php',
         'ItemGroup' => __DIR__ . '/../..' . '/src/Model/ItemGroup.class.php',
         'ItemMasterItem' => __DIR__ . '/../..' . '/src/Model/ItemMasterItem.class.php',
-        'Product' => __DIR__ . '/../..' . '/src/Model/Product.class.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
