@@ -70,13 +70,13 @@
 
         
         /**
-         * Imports a family record from the database and makes a page in Processwire
+         * Imports a ItemMaster record from the database and makes a page in Processwire
          * @param  ModelClass $item         ItemMasterItem object to pull data from
          * @param  string     $parentselector ProcessWire Selector for Parent
          * @return bool                       Was ItemMasterItem Created / Updated?
          */
         public function import(ModelClass $item, $parentselector = '') {
-            $p = $this->get_page("template=$this->template, itemgroup=$item->code");
+            $p = $this->get_page("template=$this->template, itemgroup=$item->itemgroup");
 
             if (get_class($p) == 'ProcessWire\Page') {
                 return $this->update_page($p, $item, $parentselector);

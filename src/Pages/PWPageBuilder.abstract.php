@@ -2,6 +2,7 @@
     namespace Dplus\Ecomm\Pages;
     
     use Processwire\Page;
+    use Dplus\ProcessWire\DplusWire;
     use ModelClass;
     
     /**
@@ -100,7 +101,7 @@
          * @return void
          */
         protected function hide_templatepages() {
-            $pages = DplusWire::wire('pages')->find('template=$this->template');
+            $pages = DplusWire::wire('pages')->find("template=$this->template");
             foreach ($pages as $page) {
                 $page->of(false);
 				$page->status(['hidden' => true, 'unpublished' => true]); 
