@@ -43,6 +43,7 @@
          * @return bool                       Was Page updated?
          */
         public function update_page(Page $p, ModelClass $item, $parentselector = '') {
+            $imgtypes = array('jpg', 'gif', 'png', 'jpeg');
             $p->of(false);
             $p->itemid = $item->itemid;
             $p->title = $item->name1;
@@ -55,7 +56,15 @@
 
 			if (file_exists(DplusWire::wire('config')->dplusproductimagedirectory.$item->image) && !empty($item>image)) {
 				$p->product_image = DplusWire::wire('config')->dplusproductimagedirectory.$item->image;
-			}
+			} else {
+                foreach ($imgtypes as $imgtype) {
+                    $image = DplusWire::wire('config')->dplusproductimagedirectory."$this->itemid.$imgtype";
+                    if (file_exists($image)) {
+                        $p->product_image = $image;
+                        break;
+                    }
+                }              
+            }
             return $p->save();
         }
 
