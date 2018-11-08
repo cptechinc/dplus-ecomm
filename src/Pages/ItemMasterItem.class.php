@@ -105,7 +105,7 @@
             $this->hide_templatepages(); 
 
             foreach ($families as $item) {
-                $results[$item->code] = $this->import($item, $parentselector);
+                $results["$item->itemid"] = $this->import($item, $parentselector);
             }
             return $results;
         }
