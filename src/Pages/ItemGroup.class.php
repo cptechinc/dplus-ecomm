@@ -4,6 +4,7 @@
     use Processwire\Page;
     use Dplus\ProcessWire\DplusWire;
     use ItemGroup;
+    use ModelClass;
     
     /**
      * Class that handles the manipulation of ItemGroup Pages

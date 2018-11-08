@@ -4,6 +4,7 @@
     use Processwire\Page;
     use Dplus\ProcessWire\DplusWire;
     use Family;
+    use ModelClass;
     
     /**
      * Class that handles the manipulation of Family Pages
