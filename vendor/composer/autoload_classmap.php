@@ -13,5 +13,4 @@ return array(
     'Dplus\\Ecomm\\SalesOrdersDisplay' => $baseDir . '/src/SalesOrdersDisplay.class.php',
     'Family' => $baseDir . '/src/Model/Family.class.php',
     'ItemGroup' => $baseDir . '/src/Model/ItemGroup.class.php',
-    'ItemMasterItem' => $baseDir . '/src/Model/ItemMasterItem.class.php',
 );

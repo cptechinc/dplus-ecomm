@@ -33,7 +33,6 @@ class ComposerStaticInitd85ba3772556b7089d92006ffdd59dc2
         'Dplus\\Ecomm\\SalesOrdersDisplay' => __DIR__ . '/../..' . '/src/SalesOrdersDisplay.class.php',
         'Family' => __DIR__ . '/../..' . '/src/Model/Family.class.php',
         'ItemGroup' => __DIR__ . '/../..' . '/src/Model/ItemGroup.class.php',
-        'ItemMasterItem' => __DIR__ . '/../..' . '/src/Model/ItemMasterItem.class.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
