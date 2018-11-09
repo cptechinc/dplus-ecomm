@@ -3,8 +3,13 @@
 
     use Processwire\Page;
     use Dplus\ProcessWire\DplusWire;
-    use Family;
+
+    /**
+	 * Use Statements for Model Classes which are non-namespaced
+	 */
     use ModelClass;
+    use Family;
+   
     
     /**
      * Class that handles the manipulation of Family Pages

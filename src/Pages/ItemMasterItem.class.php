@@ -3,8 +3,13 @@
 
     use Processwire\Page;
     use Dplus\ProcessWire\DplusWire;
-    use ItemMasterItem;
+
+    /**
+	 * Use Statements for Model Classes which are non-namespaced
+	 */
     use ModelClass;
+    use ItemMasterItem;
+    
     
     /**
      * Class that handles the manipulation of ItemMasterItem Pages
