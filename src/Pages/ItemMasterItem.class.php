@@ -55,11 +55,12 @@
 			$p->itemgroup = $item->itemgroup;
 			$p->name = DplusWire::wire('sanitizer')->pageName("$item->name1 - $item->itemid"); // give it a name used in the url for the page
 
-			if (file_exists(DplusWire::wire('config')->dplusproductimagedirectory.$item->image) && !empty($item>image)) {
+			if (file_exists(DplusWire::wire('config')->dplusproductimagedirectory.$item->image) && !empty($item->image)) {
 				$p->product_image = DplusWire::wire('config')->dplusproductimagedirectory.$item->image;
 			} else {
                 foreach ($imgtypes as $imgtype) {
-                    $image = DplusWire::wire('config')->dplusproductimagedirectory."$this->itemid.$imgtype";
+                    $image = DplusWire::wire('config')->dplusproductimagedirectory."$item->itemid.$imgtype";
+                    
                     if (file_exists($image)) {
                         $p->product_image = $image;
                         break;
@@ -86,8 +87,8 @@
          * @return bool                       Was ItemMasterItem Created / Updated?
          */
         public function import(ModelClass $item, $parentselector = '') {
-            $p = $this->get_page("template=$this->template, itemgroup=$item->itemgroup");
-
+            $p = $this->get_page("template=$this->template, itemid=$item->itemid");
+            
             if (get_class($p) == 'ProcessWire\Page') {
                 return $this->update_page($p, $item, $parentselector);
             } else {
