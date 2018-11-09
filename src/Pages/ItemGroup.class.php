@@ -59,7 +59,7 @@
         
         /**
          * Imports a family record from the database and makes a page in Processwire
-         * @param  ModelClass $itemgroup         ItemGroup object to pull data from
+         * @param  ModelClass $itemgroup      ItemGroup object to pull data from
          * @param  string     $parentselector ProcessWire Selector for Parent
          * @return bool                       Was ItemGroup Created / Updated?
          */
@@ -84,7 +84,7 @@
             $this->hide_templatepages(); 
 
             foreach ($families as $itemgroup) {
-                $results[$itemgroup->code] = $this->import($itemgroup, $parentselector);
+                $results["$itemgroup->code"] = $this->import($itemgroup, $parentselector);
             }
             return $results;
         }

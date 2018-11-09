@@ -65,7 +65,7 @@
                         $p->product_image = $image;
                         break;
                     }
-                }              
+                }
             }
             return $p->save();
         }

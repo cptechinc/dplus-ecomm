@@ -2,7 +2,7 @@
     use ProcessWire\Page;
     use Dplus\ProcessWire\DplusWire;
     
-	class ItemGroup {
+	class ItemGroup extends ModelClass {
 		use \Dplus\Base\ThrowErrorTrait;
 		use \Dplus\Base\MagicMethodTraits;
 		use \Dplus\Base\CreateFromObjectArrayTraits;
