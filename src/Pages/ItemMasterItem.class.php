@@ -3,13 +3,8 @@
 
     use Processwire\Page;
     use Dplus\ProcessWire\DplusWire;
-
-    /**
-	 * Use Statements for Model Classes which are non-namespaced
-	 */
-    use ModelClass;
     use ItemMasterItem;
-    
+    use ModelClass;
     
     /**
      * Class that handles the manipulation of ItemMasterItem Pages
@@ -59,13 +54,21 @@
             $p->imagetext = "image of $item->name1";
 			$p->itemgroup = $item->itemgroup;
 			$p->name = DplusWire::wire('sanitizer')->pageName("$item->name1 - $item->itemid"); // give it a name used in the url for the page
-
-			if (file_exists(DplusWire::wire('config')->dplusproductimagedirectory.$item->image) && !empty($item->image)) {
+            
+            foreach ($p->product_image as $image) {
+                $p->product_image->delete($image);
+            }
+            
+            $p->save("product_image");
+            $p->of(true);
+            $p->of(false);
+            
+            if (file_exists(DplusWire::wire('config')->dplusproductimagedirectory.$item->image) && !empty($item->image)) {
 				$p->product_image = DplusWire::wire('config')->dplusproductimagedirectory.$item->image;
 			} else {
                 foreach ($imgtypes as $imgtype) {
                     $image = DplusWire::wire('config')->dplusproductimagedirectory."$item->itemid.$imgtype";
-                    
+            
                     if (file_exists($image)) {
                         $p->product_image = $image;
                         break;

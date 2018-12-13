@@ -3,13 +3,8 @@
 
     use Processwire\Page;
     use Dplus\ProcessWire\DplusWire;
-
-    /**
-	 * Use Statements for Model Classes which are non-namespaced
-	 */
-    use ModelClass;
     use ItemGroup;
-    
+    use ModelClass;
     
     /**
      * Class that handles the manipulation of ItemGroup Pages
