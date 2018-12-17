@@ -25,6 +25,12 @@
 		public function setup_pageurl() {
 			$this->pageurl->query->remove('display');
 		}
+		
+		public function generate_searchURL() {
+			$url = new Url($this->pageurl->getUrl());
+			$url = Paginator::paginate_purl($url, 1, $this->paginationinsertafter);
+			return $url->getUrl();
+		}
 
 		public function generate_loaddetailsurl(Order $order) {
 			$url = new Url(DplusWire::wire('pages')->get('/user/orders/redir/')->url);
