@@ -3,8 +3,9 @@
 	
 	use Purl\Url;
 	use Dplus\ProcessWire\DplusWire;
+	use Dplus\Content\Paginator;
 	use Dplus\Dpluso\OrderDisplays\SalesOrderPanel;
-	
+
 	/**
 	 * Use Statements for Model Classes which are non-namespaced
 	 */
