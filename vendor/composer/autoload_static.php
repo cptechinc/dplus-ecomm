@@ -30,6 +30,7 @@ class ComposerStaticInitd85ba3772556b7089d92006ffdd59dc2
         'Dplus\\Ecomm\\Pages\\ItemGroupPages' => __DIR__ . '/../..' . '/src/Pages/ItemGroup.class.php',
         'Dplus\\Ecomm\\Pages\\ItemMasterItemPages' => __DIR__ . '/../..' . '/src/Pages/ItemMasterItem.class.php',
         'Dplus\\Ecomm\\Pages\\ProcessWirePageBuilder' => __DIR__ . '/../..' . '/src/Pages/PWPageBuilder.abstract.php',
+        'Dplus\\Ecomm\\SalesOrderHistoryDisplay' => __DIR__ . '/../..' . '/src/SalesOrderHistoryDisplay.class.php',
         'Dplus\\Ecomm\\SalesOrdersDisplay' => __DIR__ . '/../..' . '/src/SalesOrdersDisplay.class.php',
         'Family' => __DIR__ . '/../..' . '/src/Model/Family.class.php',
         'ItemGroup' => __DIR__ . '/../..' . '/src/Model/ItemGroup.class.php',
