@@ -9,14 +9,19 @@
 	/**
 	 * Use Statements for Model Classes which are non-namespaced
 	 */
-	use Order;
+	use SalesOrderHistory, Order;
 
 	class SalesOrderHistoryDisplay extends SalesOrderHistoryPanel {
 
-        public function __construct($sessionID, Url $pageurl, $modal, $loadinto, $ajax) {
-			parent::__construct($sessionID, $pageurl, $modal, $loadinto, $ajax);
-			$this->pageurl = new Url($pageurl->getUrl());
-			$this->setup_pageURL();
+        /**
+		 * Sales Order Number
+		 * @var string
+		 */
+		protected $ordn;
+
+		public function __construct($sessionID, Url $pageurl, $modal, $ordn) {
+			parent::__construct($sessionID, $pageurl, $modal);
+			$this->ordn = $ordn;
 		}
 
         /* =============================================================
@@ -38,5 +43,17 @@
 			$url->query->set('action', 'get-order-details');
 			$url->query->set('ordn', $order->ordernumber);
 			return $url->getUrl();
+		}
+
+        /* =============================================================
+			GETTER FUNCTIONS
+		============================================================ */
+		/**
+		 * Returns Sales Order from database
+		 * @param  bool             		$debug Run in debug? If So, returns SQL Query
+		 * @return SalesOrderHistory        Sales Order
+		 */
+		public function get_order($debug = false) {
+			return SalesOrderHistory::load($this->ordn, $debug);
 		}
 	}
