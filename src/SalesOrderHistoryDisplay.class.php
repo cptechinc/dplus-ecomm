@@ -39,7 +39,7 @@
 		}
 
 		public function generate_loaddetailsURL(Order $order) {
-			$url = new Url(DplusWire::wire('pages')->get('/sales-orders-history/redir/')->url);
+			$url = new Url(DplusWire::wire('pages')->get('/sales-history/redir/')->url);
 			$url->query->set('action', 'get-order-details');
 			$url->query->set('ordn', $order->ordernumber);
 			return $url->getUrl();
